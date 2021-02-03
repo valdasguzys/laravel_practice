@@ -2,9 +2,10 @@
 
 .htaccess file in your www
 
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule ^(.*)$ /laravel_practice/public/$1 [L]
-</IfModule>
+
+//<IfModule mod_rewrite.c>
+//RewriteEngine On
+//RewriteRule ^(.*)$ /laravel_practice/public/$1 [L]
+//</IfModule>
 
 
