@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
+use Gate;
 use App\User;
 
 class BlogPostController extends Controller{
@@ -54,6 +54,8 @@ class BlogPostController extends Controller{
     }
 
     public function destroy($id){
+        if(Gate::denies('delete-post', \App\Models\Blogpost::find($id))) // useris paduodamas automatiškai!!!
+        return redirect()->back()->with('status_error', 'You can\'t delete this post!');
         \App\Models\BlogPost::destroy($id);
         return redirect('/posts')->with('status_success', 'Post deleted!');
         // return redirect('/laravel_practice/posts')->with('status_success', 'Post deleted!');
