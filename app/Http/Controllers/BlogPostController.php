@@ -19,8 +19,6 @@ class BlogPostController extends Controller{
         return view('blogposts', ['posts' => \App\Models\BlogPost::all()]); // MODEL::all() → SELECT ALL ROWS
     }
 
-
-
     // public function show($id){
     //     foreach($this->blogPosts as $blogPost){
     //         if($blogPost['id'] == $id){
@@ -33,24 +31,22 @@ class BlogPostController extends Controller{
     }
 
 
-   
     public function store(Request $request){
-
         $this->validate($request, [
             // [Dėmesio] validacijoje unique turi būti nurodytas teisingas lentelės pavadinimas! Galime pažiūrėti, kas bus jei bus neteisingas
                'title' => 'required|unique:blog_posts,title|max:5',
                'text' => 'required',
            ]);
-
-        $pb = new \App\Models\Blogpost();
-        $pb->title = $request['title'];
-        $pb->text = $request['text'];
+        $bp = new \App\Models\BlogPost();
+        $bp->title = $request['title'];
+        $bp->text = $request['text'];
+        $bp->user_id = auth()->user()->id;
 
         // // primityvi validacija irgi gali būti taip padaryta
         // if($pb->title == NULL or $pb->text == NULL)
         //     return redirect('/laravel__practice/posts')->with('status_error', 'Post was not created!');
 
-        return ($pb->save() !== 1) ? 
+        return ($bp->save() !== 1) ? 
             redirect('/posts')->with('status_success', 'Post created!') : 
             redirect('/posts')->with('status_error', 'Post was not created!');
             // redirect('/laravel_practice/posts')->with('status_success', 'Post created!') : 

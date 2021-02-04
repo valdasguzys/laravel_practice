@@ -14,8 +14,12 @@
         <li class="nav-item {{ Request::routeIs('posts.index') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('posts.index')}}">Posts</a>
         </li>
-    
       </ul>
     </div>
+    
+    </div>
+    {{ Auth::user()['name'] }}
+    </div>
+
   </nav>
    

@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     // LoginController.php kodas
     public function username(){
-        return 'name'; // email default, turi būti toks kaip db
+        return 'nickname'; // email default, turi būti toks kaip db
 }
 
 }

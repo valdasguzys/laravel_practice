@@ -41,6 +41,9 @@ Route::delete('/posts/{id}', 'App\Http\Controllers\BlogPostController@destroy')-
 Route::put('/posts/{id}', 'App\Http\Controllers\BlogPostController@update')->name('posts.update');
 Route::post('/posts/{id}/comments', [BlogPostController::class, 'storePostComment'])->name('posts.comments.store');
 
+Route::get('/', function () { return view('welcome'); })->name('index');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('.home');
+
 
 // //nenaudojant .htacces www foleryje pasiekti per /laravel_practice/
 // Route::get('/laravel_practice/posts', 'App\Http\Controllers\BlogPostController@index')->name('posts.index');

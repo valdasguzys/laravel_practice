@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 
       {{-- Validation error, for invalid incoming data display logic --}}
@@ -21,8 +21,11 @@
     @foreach ($posts as $post)
         <h1>{{ $post['title'] }}</h1>
         <p>{{ $post['text'] }}</p>
-        <p style="font-size: 10px">Comment count: {{ count($post->comments) }} 
-            <a href="{{ route('posts.show', $post['id']) }}">View post details and comment on it</a></p>
+        <p style="font-size: 10px">Comment count: {{ count($post->comments) }}           
+            | <a href="{{ route('posts.show', $post['id']) }}">View post details and comment on it</a>
+            | Author: {{ $post['user']['name'] }} , {{ $post['user']['email'] }}</p>
+                 {{-- Hide buttons if the user is not logged in  --}}
+            @if (auth()->check())
             <div class="btn-group" style="overflow: auto">
                 <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}" method="POST">
                     @method('DELETE') @csrf
@@ -33,6 +36,10 @@
                     <input class="btn btn-primary" type="submit" value="UPDATE">
                 </form>
             </div>
+            @endif
+  
+        
+
      
         <hr> 
     @endforeach
