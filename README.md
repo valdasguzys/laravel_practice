@@ -12,3 +12,10 @@ RewriteRule ^(.*)$ /laravel_practice/public/$1 [L]
 TO DO:
 <li>hide blogpost form if not logged in
 <li>disable 'update' if not logged in
+
+to install: 
+
+composer install
+npm build
+artisan migrate
+edit .htaccess

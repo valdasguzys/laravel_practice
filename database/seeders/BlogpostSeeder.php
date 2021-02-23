@@ -6,11 +6,7 @@ use Illuminate\Database\Seeder;
 
 class BlogpostSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run(){
         $bp1 = new \App\Models\BlogPost();
         $bp1->title = "Title 1";
